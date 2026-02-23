@@ -5,6 +5,30 @@ let autoAcceptInterval = null;
 let enabled = true;
 let statusBarItem;
 
+/**
+ * All known accept/approve commands in Antigravity IDE.
+ * Covers both the legacy agent panel and the new Cascade agent system.
+ */
+const ACCEPT_COMMANDS = [
+    // === Agent Panel (legacy + current) ===
+    'antigravity.agent.acceptAgentStep',          // Main agent step accept (alt+enter when !editorTextFocus)
+
+    // === Interactive Cascade (new agent system) ===
+    'antigravity.interactiveCascade.acceptSuggestedAction',  // Cascade agent suggested action accept
+    'antigravity.executeCascadeAction',            // Execute cascade action directly
+
+    // === Terminal Commands ===
+    'antigravity.terminalCommand.accept',          // Terminal command approval (alt+enter in terminal)
+    'antigravity.terminalCommand.run',             // Terminal command run
+
+    // === Editor / Inline Command Mode ===
+    'antigravity.command.accept',                  // Editor command mode accept (ctrl+enter)
+
+    // === Agent Diff/Hunk Acceptance ===
+    'antigravity.prioritized.agentAcceptFocusedHunk',       // Accept focused diff hunk
+    'antigravity.prioritized.agentAcceptAllInFile',         // Accept all agent edits in file
+];
+
 function activate(context) {
     // Register toggle command
     let disposable = vscode.commands.registerCommand('unlimited.toggle', function () {
@@ -52,18 +76,15 @@ function updateStatusBar() {
 function startLoop() {
     autoAcceptInterval = setInterval(async () => {
         if (!enabled) return;
-        try {
-            await vscode.commands.executeCommand('antigravity.agent.acceptAgentStep');
-        } catch (e) { }
-        try {
-            await vscode.commands.executeCommand('antigravity.terminalCommand.accept');
-        } catch (e) { }
-        try {
-            await vscode.commands.executeCommand('antigravity.command.accept');
-        } catch (e) { }
-        try {
-            await vscode.commands.executeCommand('antigravity.prioritized.agentAcceptFocusedHunk');
-        } catch (e) { }
+
+        // Execute all accept commands, silently ignoring errors for inactive/unavailable ones
+        for (const cmd of ACCEPT_COMMANDS) {
+            try {
+                await vscode.commands.executeCommand(cmd);
+            } catch (e) {
+                // Command not available or not applicable — silently skip
+            }
+        }
     }, 500);
 }
 

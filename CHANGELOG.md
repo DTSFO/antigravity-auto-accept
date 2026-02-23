@@ -2,6 +2,17 @@
 
 All notable changes to the **Antigravity Auto Accept** extension will be documented in this file.
 
+## [1.1.0] - 2026-02-23
+
+### Added
+- Support for new Cascade agent system (`antigravity.interactiveCascade.acceptSuggestedAction`, `antigravity.executeCascadeAction`)
+- Support for accepting all agent edits in a file (`antigravity.prioritized.agentAcceptAllInFile`)
+- Support for accepting focused diff hunks (`antigravity.prioritized.agentAcceptFocusedHunk`)
+- Terminal command run support (`antigravity.terminalCommand.run`)
+
+### Changed
+- Refactored command list into a configurable array for easier maintenance
+
 ## [1.0.4] - 2026-02-23
 
 ### Fixed
