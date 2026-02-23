@@ -1,6 +1,6 @@
 # Antigravity Auto Accept
 
-[![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/pesoszpesosz/antigravity-auto-accept)
+[![Version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/pesoszpesosz/antigravity-auto-accept)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Finally, true hands-free automation for your Antigravity Agent.**

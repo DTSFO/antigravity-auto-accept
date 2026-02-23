@@ -2,6 +2,12 @@
 
 All notable changes to the **Antigravity Auto Accept** extension will be documented in this file.
 
+## [1.0.4] - 2026-02-23
+
+### Fixed
+- Updated compatibility with the latest Antigravity IDE version by adding support for new command names (`antigravity.terminalCommand.accept`, `antigravity.command.accept`, `antigravity.prioritized.agentAcceptFocusedHunk`).
+
+
 ## [1.0.3] - 2025-12-10
 
 ### Fixed

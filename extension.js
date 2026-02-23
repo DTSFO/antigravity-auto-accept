@@ -56,7 +56,13 @@ function startLoop() {
             await vscode.commands.executeCommand('antigravity.agent.acceptAgentStep');
         } catch (e) { }
         try {
-            await vscode.commands.executeCommand('antigravity.terminal.accept');
+            await vscode.commands.executeCommand('antigravity.terminalCommand.accept');
+        } catch (e) { }
+        try {
+            await vscode.commands.executeCommand('antigravity.command.accept');
+        } catch (e) { }
+        try {
+            await vscode.commands.executeCommand('antigravity.prioritized.agentAcceptFocusedHunk');
         } catch (e) { }
     }, 500);
 }
